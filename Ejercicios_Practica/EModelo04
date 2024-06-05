@@ -1,0 +1,25 @@
+habitantes = 684164
+ciudad = "Sevilla"
+clima = "Mediterraneo"
+condiciones = "despejado y  33C"
+
+pipeline
+{
+    agent any
+    stages{
+        stage("Informacion de la ciudad")
+        {
+            steps
+            {
+                script
+                {
+
+					
+					println "Bienvenido a "+ ciudad
+					println "Actualmente podemos disfrutar de un clima " + clima+ ", con un dia "+ condiciones
+					print "Poblacion neta: " + (habitantes*0.8) + "habitantes"
+                }
+            }
+        }
+    }
+}
