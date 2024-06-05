@@ -46,7 +46,8 @@ pipeline
 					
                    	 echo "Ejecución  de ${env.JOB_NAME}"
 			//Identificador de quien lo ejecuta
-			echo "Ejecutado por ${env.EXECUTOR_NUMBER}"
+			echo "Ejecutado por (Identificador) ${env.EXECUTOR_NUMBER}"
+			echo "Ejecutado por (nombre) ${env.env.BUILD_USER}"
                    
                     
                 }
