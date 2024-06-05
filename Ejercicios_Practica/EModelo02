@@ -1,0 +1,68 @@
+import java.io.File
+numeros=[]
+salida="Los resultados de las operaciones son\n"
+pipeline
+{
+    agent any
+    environment{
+        readTXT="LeerJenkins.txt"
+        writeTXT="resultadosOperaciones.txt"
+        rutaFichero="C:\\"
+        
+    }
+    stages
+    {
+        stage("Leer archivo")
+        {
+            steps
+            {
+                script
+                {
+                    archivo = readFile(file: "C:\\LeerJenkins.txt")
+                    Integer numero1 = archivo.split('-')[0] as Integer
+                    Integer numero2 = archivo.split('-')[1] as Integer
+                   
+                    suma = numero1+numero2
+                    mensajesum = ("\rLa suma es : " + suma)
+                    salida += "\r-----STAGE DE SUMA-------"
+                    salida += mensajesum
+                    println mensajesum
+                    
+
+
+                    resta = numero1-numero2
+                    mensajeresta =("\rLa resta es : " + resta)
+                    println mensajeresta
+                    salida += "\r-----STAGE DE RESTA-------"
+                    salida += mensajeresta
+
+
+                    multip = numero1*numero2
+                    mensajemultip =("\rEl producto es : " + multip)
+                    println mensajemultip
+                    salida += "\r-----STAGE DE PRODUCTO-------"
+                    salida += mensajemultip
+
+
+                    mensajecociente = (numero1 == 0 || numero2==0) ? ("\rNo se puede divdir por 0. \r Uno de los valoeres es 0.") : ("\rAmbos valores son mayores que 0. \rEl cociente es: " + (numero1 / numero2))
+                    salida += "\r-----STAGE DE COCIENTE-------"
+                    salida +=mensajecociente
+                    println mensajecociente   
+
+                }
+            }
+        }
+        stage("Crear fichero")
+        {
+            steps
+            {
+                script
+                {
+					println "Se va a grabar en el fichero la siguiente cadena"+ salida
+                    writeFile(file:writeTXT, text:salida)
+                }
+            }
+        }
+
+    }
+}
