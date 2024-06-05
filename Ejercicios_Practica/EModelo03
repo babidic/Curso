@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat
 pipeline
 {
     agent any
@@ -10,11 +11,16 @@ pipeline
             {
                 script
                 {
+                    mensaje="La tabal de los cuadrados es: \n"
                     for (int i = 1; i <=10; i++) {
                         num= i*i
-                        println i + "=" +num
+                         mensaje+=i + "=" +num+"\n"
                     }
-
+                    fecha = new Date()
+                    formatoSalida = new SimpleDateFormat("dd-MM-yyyy")
+                    fechaFormato2 = formatoSalida.format(fecha)
+					println "\rSe va a grabar en el fichero la siguiente cadena"+ mensaje
+                    writeFile(file:"salida_"+fechaFormato2, text:mensaje)
                 }
             }
         }
