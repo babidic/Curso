@@ -1,0 +1,109 @@
+import java.text.SimpleDateFormat
+
+dia = new Date().getDay()
+dia_semana = [1: "Lunes", 2:"Martes", 3:"Miercoles", 4:"Jueves", 5:"Viernes", 6:"Sabado", 7:"Domingo"]
+pipeline
+{
+    agent any
+    options
+    {
+        timeout(time:2, unit:"MINUTES")
+    }
+    stages
+    {
+        stage("Lunes")
+        {
+            when
+            {
+                equals(actual:dia, expected:1)
+            }
+            
+            steps
+            {
+                script
+                {
+                    n1 = 10
+                    n2 = 10
+                    suma = n1 + n2
+                    resta = n1 - n2
+                    producto = n1 * n2
+                    cociente = n1/n2
+                    println "La suma es: " + suma + "\rLa diferencia es: " + resta+"\rEl producto es: " + producto + "\rEl cociente es: "+ cociente
+                }
+            }
+        }
+        stage("Martes")
+        {
+            when
+            {
+                equals(actual:dia, expected:2)
+            }
+            
+            steps
+            {
+                script
+                {
+                    fecha = new Date()
+                    formato = new SimpleDateFormat("dd/MM/yyyy")
+                    fechaFormato = formato.format(fecha)
+                    print "Hoy es "+dia_semana[dia]+", "+ fechaFormato+". La tarea ha sido ejecutada por ${env.BUILD_DISPLAY_NAME}"
+                    
+                }
+
+            }
+        }
+        stage("Miercoles")
+        {
+            when
+            {
+                equals(actual:dia, expected:3)
+            }
+            
+            steps
+            {
+                script
+                {
+                    println "Se ha ejecutado correctamente el Pipeline del miercoles"
+                }
+
+            }
+        }
+        stage("Jueves")
+        {
+            when
+            {
+                equals(actual:dia, expected:4)
+            }
+            
+            steps
+            {
+                script
+                {
+                    
+        			ciudad = "Sevilla"
+        			clima = "Mediterraneo"
+        			condiciones = "despejado y  33C"
+        			println "Bienvenido a "+ ciudad
+        			println "Actualmente podemos disfrutar de un clima " + clima+ ", con un dia "+ condiciones
+                }
+
+            }
+        }
+        stage("Viernes")
+        {
+            when
+            {
+                equals(actual:dia, expected:5)
+            }
+            
+            steps
+            {
+                script
+                {
+                    println "Lo estas haciendo de maravilas!"
+                }
+
+            }
+        }
+    }
+}
