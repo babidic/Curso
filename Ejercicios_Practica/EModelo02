@@ -19,6 +19,7 @@ pipeline
                 script
                 {
                     archivo = readFile(file: "C:\\LeerJenkins.txt")
+            	    //numeros =readFile(file: "C:\\LeerJenkins.txt").trim().split("-").collect{ it.toInteger()}
                     Integer numero1 = archivo.split('-')[0] as Integer
                     Integer numero2 = archivo.split('-')[1] as Integer
                    
