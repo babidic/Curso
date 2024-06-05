@@ -1,0 +1,24 @@
+pipeline
+{
+    agent any
+
+    stages
+    {
+        stage("Leer archivo")
+        {
+            steps
+            {
+                script
+                {
+                    for (int i = 1; i <=10; i++) {
+                        num= i*i
+                        println i + "=" +num
+                    }
+
+                }
+            }
+        }
+
+
+    }
+}
