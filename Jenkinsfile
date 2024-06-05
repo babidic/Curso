@@ -44,7 +44,9 @@ pipeline
                 script
                 {
 					
-                    echo "Ejecución  de ${env.JOB_NAME}"
+                   	 echo "Ejecución  de ${env.JOB_NAME}"
+			//Identificador de quien lo ejecuta
+			echo "Ejecutado por ${env.EXECUTOR_NUMBER}"
                    
                     
                 }
