@@ -1,7 +1,10 @@
+import java.text.SimpleDateFormat
+
 habitantes = 684164
 ciudad = "Sevilla"
 clima = "Mediterraneo"
 condiciones = "despejado y  33C"
+fecha = new Date()
 
 pipeline
 {
@@ -13,13 +16,16 @@ pipeline
             {
                 script
                 {
-
-					
-					println "Bienvenido a "+ ciudad
-					println "Actualmente podemos disfrutar de un clima " + clima+ ", con un dia "+ condiciones
-					print "Poblacion neta: " + (habitantes*0.8) + "habitantes"
+			formato = new SimpleDateFormat("dd/MM/yyyy")
+                   	 fechaFormato = formato.format(fecha)
+                   	 mensaje = ("\r¡Hola! \rBien venido a " + ciudad)
+                   	 mensaje += ("\rLa fecha de hoy es:" + fechaFormato)
+			mensaje +=("\rActualmente podemos disfrutar de un clima " + clima+ ", con un dia "+ condiciones)
+			mensaje +=("\rPoblacion neta: " + (habitantes*0.8) + "habitantes")
                 }
             }
         }
+
     }
 }
+       
